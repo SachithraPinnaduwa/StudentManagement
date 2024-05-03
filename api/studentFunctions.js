@@ -1,9 +1,8 @@
 import { Student } from './models/student.js';
 
-export const insertStudent = async (userId, name, age, status) => {
+export const insertStudent = async (name, age, status) => {
   try {
     const student = new Student({
-      id: userId, 
       name: name,
       image: null, 
       age: age, 
@@ -16,29 +15,28 @@ export const insertStudent = async (userId, name, age, status) => {
   }
 };
 
-export const getAllStudents = async (userId = null) => {
+export const getAllStudents = async () => {
   try {
-    const query = userId ? { id: userId } : {};
-    return await Student.find(query);
+    return await Student.find({});
   } catch (error) {
     throw error;
   }
 };
 
-export const deleteStudent = async ( userId) => {
+export const deleteStudent = async (studentId) => {
   try {
-    const result = await Student.deleteOne({ id: userId });
+    const result = await Student.deleteOne({ _id: studentId });
     return result;
   } catch (error) {
     throw error;
   }
 };
 
-export const updateStudent = async (id, updatedFields) => {
+export const updateStudentStatus = async (studentId, newStatus) => {
   try {
-    const updatedStudent = await Student.findOneAndUpdate(
-      { id },
-      updatedFields,
+    const updatedStudent = await Student.findByIdAndUpdate(
+      studentId,
+      { status: newStatus },
       { new: true }
     );
     return updatedStudent;
@@ -46,17 +44,3 @@ export const updateStudent = async (id, updatedFields) => {
     throw error;
   }
 };
-
-
-
-// const updatedFields1 = {
-//   name: 'New Name',
-//   age: 25
-// };
-// await updateStudent(studentId, updatedFields1);
-
-// // Example of updating only the status field
-// const updatedFields2 = {
-//   status: false
-// };
-// await updateStudent(studentId, updatedFields2);

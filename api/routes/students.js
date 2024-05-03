@@ -1,15 +1,10 @@
-import { insertStudent, getAllStudents, deleteStudent, updateStudent } from '../studentFunctions.js'; 
+import { insertStudent, getAllStudents, deleteStudent, updateStudentStatus } from '../studentFunctions.js'; 
 import { Router } from 'express';
 const studentRouter = Router();
 
 studentRouter.get('/', async (req, res) => {
-    const userId = req.query.userId;
     try {
-        if (!userId) {
-            res.status(400).send("Missing user ID");
-            return;
-        }
-        const students = await getAllStudents(userId);
+        const students = await getAllStudents();
         res.json(students);
     } catch (err) {
         res.status(500).send('Failed to retrieve students');
@@ -17,29 +12,29 @@ studentRouter.get('/', async (req, res) => {
 });
 
 studentRouter.post('/', async (req, res) => {
-    const { userId, name, age, status } = req.body;
-    if (!userId || !name || !age || !status) {
+    const { name, age, status } =req.body;
+    if (!name || !age || typeof status === 'undefined'){
         res.status(400).send('Missing required fields');
         return;
     }
     try {
-        await insertStudent(userId, name, age, status);
+        await insertStudent(name, age, status);
         res.status(201).send('Student added');
     } catch (err) {
-        res.status(500).send(`Error adding student: ${err.message}`);
+        console.log(err);
+        res.status(500).json({ error: err.message });
     }
 });
 
 studentRouter.put('/:id', async (req, res) => {
-    const { name, age, status } = req.body;
+    const { status } = req.body;
     const { id } = req.params;
-    if (!name || !age || !status) {
-        res.status(400).send('Missing required fields');
+    if (typeof status === 'undefined') {
+        res.status(400).send('Missing status field');
         return;
     }
     try {
-        const updatedFields = { name, age, status };
-        const updatedStudent = await updateStudent(id, updatedFields);
+        const updatedStudent = await updateStudentStatus(id, status);
         if (!updatedStudent) {
             res.status(404).send('Student not found');
             return;
@@ -49,6 +44,7 @@ studentRouter.put('/:id', async (req, res) => {
         res.status(500).send(`Error updating student: ${err.message}`);
     }
 });
+
 
 studentRouter.delete('/:id', async (req, res) => {
     const { id } = req.params;
