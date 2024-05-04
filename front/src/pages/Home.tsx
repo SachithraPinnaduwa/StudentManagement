@@ -1,6 +1,5 @@
 import { MouseEvent } from 'react';
-import ProductTable from '../components/ProductTable';
-import AddStudentForm from '../components/AddStudentForm';
+
 import Navigation from '../components/Navigation';
 
 function Home({ user }) {
@@ -9,8 +8,10 @@ function Home({ user }) {
   }
 
   return (
-    <div className="bg-gray-100 min-h-screen flex items-center justify-center flex-col">
-      <Navigation />
+    <div className='bg-gray-100 min-h-screen'>
+       <Navigation />
+    <div className=" flex items-center justify-center flex-col">
+     
       <div className=" mx-auto bg-white rounded-lg shadow-lg p-4 m-4">
         <h1 className="text-2xl font-bold mb-4">Home</h1>
         <div className="flex items-center space-x-4 mb-4">
@@ -23,9 +24,10 @@ function Home({ user }) {
         
         <button onClick={logout} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Log out</button>
       </div>
-      <AddStudentForm />
-      <ProductTable />
+      {/* <AddStudentForm />
+      <ProductTable /> */}
     </div>
+  </div>
   )
 }
 

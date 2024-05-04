@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Navigation from './Navigation';
 
-const ProductTable = () => {
+const StudentTable = () => {
     const [students, setStudents] = useState([]);
     const [editingStudentId, setEditingStudentId] = useState(null);
     const [editingStatus, setEditingStatus] = useState(false);
@@ -39,7 +40,10 @@ const ProductTable = () => {
     };
 
     return (
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <div>
+            <Navigation />
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg  m-10">
+            
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -102,7 +106,8 @@ const ProductTable = () => {
                 </tbody>
             </table>
         </div>
+        </div>
     );
 };
 
-export default ProductTable;
+export default StudentTable;

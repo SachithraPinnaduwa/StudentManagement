@@ -1,11 +1,14 @@
 import "./App.css";
 import Home from "./pages/Home";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { useUser } from './UserContext';
+import AddStudentForm from "./components/AddStudentForm";
+
+import StudentTable from "./components/StudentTable";
 function App() {
   const { user, setUser } = useUser();
 
@@ -28,6 +31,8 @@ useEffect(() => {
         <Route path="/login" element={user ? <Navigate to={"/"}/> : <Login /> } />
         <Route path="/signup" element={user ? <Navigate to={"/"}/> : <Signup />} />
         <Route  path="/"  element={user? <Home user={user} /> : <Navigate to={"/login"}/>} />
+        <Route  path="/form" element={user? <AddStudentForm /> : <Navigate to={"/login"}/>} />
+        <Route path="/table" element={user? <StudentTable /> : <Navigate to={"/login"}/>} />
       </Routes>
     </>
   );
