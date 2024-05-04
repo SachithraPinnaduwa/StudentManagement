@@ -11,7 +11,7 @@ function Home({ user }) {
   return (
     <div className='bg-gray-100 min-h-screen'>
        <Navigation />
-    <div className=" flex items-center justify-center flex-col">
+    <div className=" flex items-center justify-center flex-col h-[90vh]">
      
       <div className=" mx-auto bg-white rounded-lg shadow-lg p-4 m-4">
         <h1 className="text-2xl font-bold mb-4">Home</h1>

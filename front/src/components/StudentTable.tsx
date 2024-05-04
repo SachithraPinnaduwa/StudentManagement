@@ -39,6 +39,16 @@ const StudentTable = () => {
         }
     };
 
+    const deleteStudent = async (id) => {
+        try {
+            await axios.delete(`http://localhost:8080/student/${id}`);
+            // Refresh students after deletion
+            fetchStudents();
+        } catch (error) {
+            console.error('Failed to delete student:', error.message);
+        }
+    };
+
     return (
         <div>
             <Navigation />
@@ -62,6 +72,9 @@ const StudentTable = () => {
                         <th scope="col" className="px-6 py-3">
                             Action
                         </th>
+                        <th scope="col" className="px-6 py-3">
+                                Delete
+                            </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -101,7 +114,13 @@ const StudentTable = () => {
                                     </button>
                                 )}
                             </td>
+                            <td className="px-6 py-4">
+                                    <button onClick={() => deleteStudent(student._id)} className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                        Delete
+                                    </button>
+                                </td>
                         </tr>
+                        
                     ))}
                 </tbody>
             </table>
