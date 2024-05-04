@@ -15,16 +15,26 @@ function App() {
   const getUser = async () => {
     try {
      const {data} = await axios.get("http://localhost:8080/auth/login/success", {withCredentials: true});
-     setUser(data.user._json);
+     const userData = data.data.user._json;
+
+
+     localStorage.setItem('user', JSON.stringify(userData));
+
+     setUser(userData);
      console.log(data);
     } catch (error) {
       console.error(error.message);
     }
   };
-useEffect(() => {
-  getUser();
-}
-, []);
+  useEffect(() => {
+
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (storedUser) {
+      setUser(storedUser);
+    } else {
+      getUser();
+    }
+  }, [setUser]);
   return (
     <>
       <Routes>
