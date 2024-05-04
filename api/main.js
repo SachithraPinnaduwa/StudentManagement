@@ -16,7 +16,7 @@ const PORT = 8080 || process.env.PORT ;
 
 app.use(cors(
   {
-    origin: 'http://localhost:5173',
+    origin: process.env.CLIENT_URL,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
   }
@@ -36,7 +36,7 @@ passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
 clientSecret: process.env.GOOGLE_CLIENT_SECRET,
 callbackURL: '/auth/google/callback',
-scope: ['email', 'profile']
+scope: ["profile", "email"],
 }, (accessToken, refreshToken, profile, callback) => {
 callback(null, profile);
 }));

@@ -3,8 +3,9 @@ import passport from 'passport';
 
 
 const router = Router();
-router.get('/google/callback', passport.authenticate('google',{
-    successRedirect: 'http://localhost:5173',
+router.get('/google/callback', 
+passport.authenticate('google',{
+    successRedirect: process.env.CLIENT_URL,
     failureRedirect: '/login/failed'
 })
 );
@@ -31,10 +32,11 @@ router.get('/login/success', (req, res) => {
         });
     }
 });
+// router.get("/google", passport.authenticate("google", ["profile", "email"]));
 
 router.get('/logout', (req, res) => {
     req.logout();
-    res.redirect('http://localhost:5173');
+    res.redirect(process.env.CLIENT_URL);
 });
 
 

@@ -4,6 +4,7 @@ import Navigation from '../components/Navigation';
 
 function Home({ user }) {
   const logout = (e: MouseEvent) => {
+    localStorage.removeItem('user');
     window.open("http://localhost:8080/auth/logout", "_self")
   }
 

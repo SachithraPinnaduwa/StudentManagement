@@ -24,7 +24,7 @@ function Login() {
       if (response.data !== null) {  
         console.log('Admin logged in:', response.data); 
         setUser(response.data);
-        localStorage.setItem('admin', JSON.stringify(response.data)); 
+        localStorage.setItem('user', JSON.stringify(response.data)); 
         navigate('/'); 
       } else {
         console.log('Login failed:', response.data); 
