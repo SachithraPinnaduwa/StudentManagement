@@ -15,12 +15,7 @@ function App() {
   const getUser = async () => {
     try {
      const {data} = await axios.get("http://localhost:8080/auth/login/success", {withCredentials: true});
-     const userData = data.data.user._json;
-
-
-     localStorage.setItem('user', JSON.stringify(userData));
-
-     setUser(userData);
+     setUser(data.user._json);
      console.log(data);
     } catch (error) {
       console.error(error.message);
