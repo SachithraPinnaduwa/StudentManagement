@@ -21,17 +21,12 @@ This project is a full-stack web application for managing student information. I
 ## Installation
 
 1. Clone the repository: `git clone https://github.com/SachithraPinnaduwa/assignment.git`
+
 2. Install dependencies:
    - Backend: `cd api && npm install`
    - Frontend: `cd front && npm install`
-3. Set up environment variables:
-   - Create a `.env` file in the backend directory with the following variables:
-     ```
-     PORT=5000
-     MONGODB_URI=your-mongodb-uri
-     JWT_SECRET=your-jwt-secret
-     ```
-4. Start the development servers:
+
+3. Start the development servers:
    - Backend: `cd api && npm run dev`
    - Frontend: `cd front && npm run dev`
 
