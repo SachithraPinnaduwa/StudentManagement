@@ -13,13 +13,13 @@ adminRouter.get('/', async (req, res) => {
 });
 
 adminRouter.post('/', async (req, res) => { 
-  const { name, password } = req.body; 
+  const { name,picture, password } = req.body; 
   if (!name || !password) {
     res.status(400).send('Missing name or password'); 
     return;
   }
   try {
-    const newAdmin = await addAdmin(name, password); 
+    const newAdmin = await addAdmin(name,picture, password); 
     res.status(201).json(newAdmin); 
   } catch (err) {
     res.status(500).send(`Error creating admin: ${err.message}`); 

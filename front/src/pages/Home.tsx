@@ -1,6 +1,6 @@
 import { MouseEvent } from 'react';
-
 import Navigation from '../components/Navigation';
+import { motion } from 'framer-motion';
 
 function Home({ user }) {
   const logout = (e: MouseEvent) => {
@@ -9,26 +9,30 @@ function Home({ user }) {
   }
 
   return (
-    <div className='bg-gray-100 min-h-screen'>
-       <Navigation />
-    <div className=" flex items-center justify-center flex-col h-[90vh]">
-     
-      <div className=" mx-auto bg-white rounded-lg shadow-lg p-4 m-4">
-        <h1 className="text-2xl font-bold mb-4">Home</h1>
-        <div className="flex items-center space-x-4 mb-4">
-          <img src={user.picture} alt="profile" className="w-12 h-12 rounded-full" />
-          <h2 className="text-xl">{user.name}</h2>
-        </div>
-        <div className="mb-4">
-          <input type="text" defaultValue={user.email} placeholder="Enter your Email" className="border border-gray-300 rounded-md px-4 py-2 w-full" />
-        </div>
-        
-        <button onClick={logout} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Log out</button>
-      </div>
-      {/* <AddStudentForm />
-      <ProductTable /> */}
+    <div className='min-h-screen bg-gray-100'>
+       <Navigation user={user}/>
+       <div className="flex items-center justify-center min-h-screen bg-gray-800 ">
+      
+           <motion.div 
+             initial={{ opacity: 0}}
+             animate={{ opacity: 1 }}
+             transition={{ duration: 2.5 }}
+             className="p-10 ">
+             <div className="p-8 bg-blue-900 rounded-lg shadow-lg flex flex-col justify-center items-center">
+               <h1 className="mb-4 text-2xl font-bold text-center text-white">Welcome</h1>
+               <img src={user.picture} alt="profile" className="w-20 h-20 rounded-full mb-4" />
+               <div className="flex items-center mb-4 space-x-4">
+                
+                 <h2 className="text-xl"><span className='font-bold text-white'>User Name </span>: <span className='text-white'> {user.name} </span></h2>
+               </div>
+              
+               <button onClick={logout} className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">Log out</button>
+             </div>
+           </motion.div>
+          
+      
+       </div>
     </div>
-  </div>
   )
 }
 

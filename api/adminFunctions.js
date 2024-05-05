@@ -2,8 +2,8 @@
 import { Admin } from './models/admin.js';
 
 
-export const addAdmin = async (name, password) => {
-  const admin = new Admin({ name, password });
+export const addAdmin = async (name, picture,password) => {
+  const admin = new Admin({ name,picture, password });
   await admin.save();
   return admin;
 };

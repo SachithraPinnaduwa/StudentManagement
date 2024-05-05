@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navigation from './Navigation';
 
-const StudentTable = () => {
+const StudentTable = ({user}) => {
     const [students, setStudents] = useState([]);
     const [editingStudentId, setEditingStudentId] = useState(null);
     const [editingStatus, setEditingStatus] = useState(false);
@@ -51,11 +51,12 @@ const StudentTable = () => {
     };
 
     return (
-        <div>
-            <Navigation />
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg  m-10">
+        <div className='bg-gray-800 min-h-screen '>
+            <Navigation user={user}/>
+         
+        <div className="relative m-10 overflow-x-auto shadow-md sm:rounded-lg">
             
-            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <table className="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" className="px-6 py-3">
@@ -80,7 +81,7 @@ const StudentTable = () => {
                 </thead>
                 <tbody>
                     {students.map((student) => (
-                        <tr key={student._id} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <tr key={student._id} className="border-b odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 dark:border-gray-700">
                             <td className="px-6 py-4">
                                 <img src={student.image} alt={student.name} className="w-12 h-12 rounded-full" />
                             </td>
@@ -126,6 +127,7 @@ const StudentTable = () => {
                 </tbody>
             </table>
         </div>
+      
         </div>
     );
 };

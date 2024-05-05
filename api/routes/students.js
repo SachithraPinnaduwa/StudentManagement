@@ -12,13 +12,13 @@ studentRouter.get('/', async (req, res) => {
 });
 
 studentRouter.post('/', async (req, res) => {
-    const { name, age, status } =req.body;
+    const { name, image, age, status } =req.body;
     if (!name || !age || typeof status === 'undefined'){
         res.status(400).send('Missing required fields');
         return;
     }
     try {
-        await insertStudent(name, age, status);
+        await insertStudent(name, image, age, status);
         res.status(201).send('Student added');
     } catch (err) {
         console.log(err);

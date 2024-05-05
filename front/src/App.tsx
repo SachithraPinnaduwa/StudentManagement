@@ -8,6 +8,7 @@ import Signup from "./pages/Signup";
 import { useUser } from './UserContext';
 import AddStudentForm from "./components/AddStudentForm";
 
+
 import StudentTable from "./components/StudentTable";
 function App() {
   const { user, setUser } = useUser();
@@ -32,13 +33,15 @@ function App() {
   }, [setUser]);
   return (
     <>
+    <div className="">
       <Routes>
         <Route path="/login" element={user ? <Navigate to={"/"}/> : <Login /> } />
         <Route path="/signup" element={user ? <Navigate to={"/"}/> : <Signup />} />
         <Route  path="/"  element={user? <Home user={user} /> : <Navigate to={"/login"}/>} />
-        <Route  path="/form" element={user? <AddStudentForm /> : <Navigate to={"/login"}/>} />
-        <Route path="/table" element={user? <StudentTable /> : <Navigate to={"/login"}/>} />
+        <Route  path="/form" element={user? <AddStudentForm user={user} /> : <Navigate to={"/login"}/>} />
+        <Route path="/table" element={user? <StudentTable user={user} /> : <Navigate to={"/login"}/>} />
       </Routes>
+    </div>  
     </>
   );
 }
