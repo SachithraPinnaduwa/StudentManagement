@@ -9,6 +9,7 @@ const StudentTable = () => {
     const fetchStudents = async () => {
         try {
             const response = await axios.get('http://localhost:8080/student');
+            console.log('Students:', response.data);
             setStudents(response.data);
         } catch (error) {
             console.error('Failed to fetch students:', error.message);

@@ -1,12 +1,12 @@
 import { Student } from './models/student.js';
 
-export const insertStudent = async (name, age, status) => {
+export const insertStudent = async (name, image, age, status) => {
   try {
     const student = new Student({
       name: name,
-      image: null, 
-      age: age, 
-      status: status, 
+      image: image, 
+      age: age,
+      status: status,
     });
     await student.save();
     return student;
@@ -14,6 +14,7 @@ export const insertStudent = async (name, age, status) => {
     throw error;
   }
 };
+
 
 export const getAllStudents = async () => {
   try {

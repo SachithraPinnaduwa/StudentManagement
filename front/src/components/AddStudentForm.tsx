@@ -5,9 +5,12 @@ import Navigation from './Navigation';
 const AddStudentForm = () => {
     const [formData, setFormData] = useState({
         name: '',
+        image: '',
         age: '',
-        status: true
+        status: true,
+        
     });
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -29,14 +32,38 @@ const AddStudentForm = () => {
             alert('Student added successfully!');
             setFormData({
                 name: '',
+                  image: '', 
                 age: '',
-                status: true
+                status: true,
+              
             });
         } catch (error) {
             console.error('Error adding student:', error.message);
             alert('Failed to add student. Please try again.');
         }
     };
+
+    const handleFileUpload = async (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const base64 = await convertToBase64(file);
+          setFormData({ ...formData, image: base64 }); 
+         console.log('base64:', base64);
+        }
+      };
+    
+      function convertToBase64(file) {
+        return new Promise((resolve, reject) => {
+          const fileReader = new FileReader();
+          fileReader.readAsDataURL(file);
+          fileReader.onload = () => {
+            resolve(fileReader.result);
+          };
+          fileReader.onerror = (error) => {
+            reject(error);
+          };
+        });
+      }
 
     return (
         <div >
@@ -56,6 +83,15 @@ const AddStudentForm = () => {
                     <input id="status" type="checkbox" name="status" checked={formData.status}  onChange={handleCheckboxChange} className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"  />
                     <label htmlFor="status" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Active</label>
                 </div>
+                <div className="flex items-start mb-5">
+                <input
+              id="file_input"
+              type="file"
+              accept=".jpeg, .png, .jpg"
+              onChange={handleFileUpload}
+              className=" w-full text-2xl text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+            />
+             </div>
                 <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
             </div>
         </form>

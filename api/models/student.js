@@ -5,7 +5,7 @@ const studentSchema = new mongoose.Schema({
   image: {
     type: String,
     required: false,
-    default: "https://via.placeholder.com/150",
+   
   },
   age: { type: Number, required: true },
   status: { type: Boolean, required: true, default: true },
