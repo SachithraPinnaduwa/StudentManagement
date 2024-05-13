@@ -29,9 +29,9 @@ const Navigation = ({ user }) => {
   }, []);
 
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 min-h-16">
+    <nav className="bg-white border-gray-200 dark:bg-gray-900 h-[14vh]">
       <div className="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto">
-        <img src={lofofrom} alt="" className="w-[10%]" />
+        <img src={lofofrom} alt="" width={100} height={100} />
         <div className="items-center justify-between hidden w-full md:flex md:w-auto " id="navbar-user">
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
@@ -52,7 +52,7 @@ const Navigation = ({ user }) => {
           </ul>
         </div>
         <div>
-          <button onClick={toggleMenu} className="flex text-sm my-4 bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+          <button onClick={toggleMenu} className="flex text-sm mr-[4vw] my-4 bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
             <span className="sr-only">Open user menu</span>
             <img className="w-12 h-12 rounded-full" src={user.picture} alt="user photo" />
           </button>

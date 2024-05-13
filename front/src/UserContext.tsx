@@ -2,7 +2,7 @@ import { createContext, useState, useContext } from 'react';
 
 const UserContext = createContext(null);
 
-export const UserProvider = ({ children }) => {
+export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState(null);
 
   return (
