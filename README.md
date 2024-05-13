@@ -1,8 +1,8 @@
-# Full Stack Developer Internship Assignment
+# Full Stack Application for Student Management
 
 ## Project Overview
 
-This project is a full-stack web application for managing student information. It includes features for adding new students, viewing a table of existing students, and a user authentication system. The frontend is built with React, and the backend is built with Node.js and Express. MongoDB is used as the database.
+This project is a full-stack web application for managing student information. It includes features for adding new students, viewing a table of existing students, and a user authentication system. The front end is built with React, and the back end is built with Node.js and Express. MongoDB is used as the database.
 
 ## Features
 
